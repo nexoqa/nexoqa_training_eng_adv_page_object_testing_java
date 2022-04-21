@@ -7,14 +7,22 @@ import java.util.List;
 
 public class RegisterPage {
 
-    @FindBy(css ="#account-creation_form > div:nth-child(1) > div.clearfix > div")
-    private List<WebElement> genderRadioBtn;
+    
+    @FindBy(id = "id_gender1")
+    private WebElement genderMrRadioBtn;
+    
+    @FindBy(id = "id_gender2")
+    private WebElement genderMrsRadioBtn;
 
     @FindBy(id = "days")
     private WebElement birthDaySelect;
 
-    public List<WebElement> getGenderRadioBtn() {
-        return genderRadioBtn;
+    public WebElement getGenderMrRadioBtn() {
+        return genderMrRadioBtn;
+    }
+
+    public WebElement getGenderMrsRadioBtn() {
+        return genderMrsRadioBtn;
     }
 
     public WebElement getBirthDaySelect() {

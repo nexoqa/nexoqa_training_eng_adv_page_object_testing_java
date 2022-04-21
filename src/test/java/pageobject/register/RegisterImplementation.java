@@ -18,7 +18,12 @@ public class RegisterImplementation {
     }
 
     private void selectGender(Integer genderId) {
-        registerPage.getGenderRadioBtn().get(genderId).click();
+        if (genderId == 0) {
+            registerPage.getGenderMrRadioBtn().click();
+        }
+        else if (genderId == 1) {
+            registerPage.getGenderMrsRadioBtn().click();
+        }
     }
 
     private void selectBirthDay(Integer day) {
