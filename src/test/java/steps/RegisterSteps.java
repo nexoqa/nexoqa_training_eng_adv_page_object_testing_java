@@ -1,12 +1,13 @@
 package steps;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
+
+import java.util.Random;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+import commons.WebDriverWrapper;
 import pageobject.home.HomeImplementation;
 import pageobject.register.RegisterImplementation;
 import pageobject.signIn.SignInImplementation;
@@ -19,25 +20,28 @@ public class RegisterSteps {
     private RegisterImplementation registerImplementation;
 
     public RegisterSteps() {
-        System.setProperty("webdriver.chrome.driver", "C:\\dev\\personal\\nexoqa\\curso\\automation-practice-1\\driver\\chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = WebDriverWrapper.getInstance().getDriver();
         homeImplementation = new HomeImplementation(driver);
         signInImplementation = new SignInImplementation(driver);
         registerImplementation = new RegisterImplementation(driver);
     }
 
-    @Given("^the user wants to register in the ecommerce$")
+    @And("^the user wants to register in the ecommerce$")
     public void theUserWantsRegisterInEcommerce() {
-        homeImplementation.goToHomePage();
         homeImplementation.goToSignInForm();
     }
 
     @When("^the user fill the register form$")
     public void theUserFillTheRegisterForm() throws InterruptedException {
         Thread.sleep(2000);
-        signInImplementation.goToRegisterForm("nexoqa@gmail.com");
-        Thread.sleep(2000);
+        Random random = new Random(); 
+        int number = random.nextInt(100); 
+        signInImplementation.goToRegisterForm("nexoqa" + number + "@gmail.com");
+        Thread.sleep(5000);
+        registerImplementation.waitUntilRegisterFormIsPresent();
         registerImplementation.fillRegisterForm(0);
+        Thread.sleep(2000);
+        registerImplementation.clickRegisterButton();
     }
 
 }
