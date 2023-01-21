@@ -17,8 +17,16 @@ public class HomeImplementation {
         homePage.getSignInBtn().click();
     }
 
+    public void goToSignUpForm() {
+        homePage.getSignUpBtn().click();
+    }
+
+    public void loadHomePage() {
+        driver.get("https://automationexercise.com/");
+    }
+
     public void goToHomePage() {
-        driver.get("http://automationpractice.com/");
+        homePage.getHomeBtn().click();
     }
 
 }

@@ -15,6 +15,8 @@ public class RegisterImplementation {
     public void fillRegisterForm(Integer genderId) {
         selectGender(genderId);
         selectBirthDay(10);
+        selectBirthMonth(01);
+        selectBirthYear(2000);
     }
 
     private void selectGender(Integer genderId) {
@@ -28,7 +30,17 @@ public class RegisterImplementation {
 
     private void selectBirthDay(Integer day) {
         Select selectBirthDay = new Select(registerPage.getBirthDaySelect());
-        selectBirthDay.selectByIndex(day);
+        selectBirthDay.selectByValue(day.toString());
+    }
+
+    private void selectBirthMonth(Integer month) {
+        Select selectBirthDay = new Select(registerPage.getBirthMonthSelect());
+        selectBirthDay.selectByValue(month.toString());
+    }
+
+    private void selectBirthYear(Integer year) {
+        Select selectBirthYear = new Select(registerPage.getBirthYearSelect());
+        selectBirthYear.selectByValue(year.toString());
     }
 
 

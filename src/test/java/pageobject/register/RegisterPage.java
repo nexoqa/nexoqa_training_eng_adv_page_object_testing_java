@@ -8,14 +8,20 @@ import java.util.List;
 public class RegisterPage {
 
     
-    @FindBy(id = "id_gender1")
+    @FindBy(id = "uniform-id_gender1")
     private WebElement genderMrRadioBtn;
     
-    @FindBy(id = "id_gender2")
+    @FindBy(id = "uniform-id_gender2")
     private WebElement genderMrsRadioBtn;
 
     @FindBy(id = "days")
     private WebElement birthDaySelect;
+
+    @FindBy(id = "months")
+    private WebElement birthMonthSelect;
+
+    @FindBy(id = "years")
+    private WebElement birthYearSelect;
 
     public WebElement getGenderMrRadioBtn() {
         return genderMrRadioBtn;
@@ -27,5 +33,13 @@ public class RegisterPage {
 
     public WebElement getBirthDaySelect() {
         return birthDaySelect;
+    }
+
+    public WebElement getBirthMonthSelect() {
+        return birthMonthSelect;
+    }
+
+    public WebElement getBirthYearSelect() {
+        return birthYearSelect;
     }
 }

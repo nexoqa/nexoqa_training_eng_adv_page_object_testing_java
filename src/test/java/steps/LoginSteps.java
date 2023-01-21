@@ -7,25 +7,26 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageobject.home.HomeImplementation;
-import pageobject.signIn.SignInImplementation;
+import pageobject.signIn.SignInSignUpImplementation;
+import utils.WrapWebDriver;
 
 public class LoginSteps {
 
     private HomeImplementation homeImplementation;
-    private SignInImplementation signInImplementation;
+    private SignInSignUpImplementation signInImplementation;
 
     private WebDriver driver;
 
     public LoginSteps() {
         System.setProperty("webdriver.chrome.driver", "driver/chromedriver");
-        driver = new ChromeDriver();
+        driver = WrapWebDriver.getInstance();
         homeImplementation = new HomeImplementation(driver);
-        signInImplementation = new SignInImplementation(driver);
+        signInImplementation = new SignInSignUpImplementation(driver);
     }
 
     @Given("^the user wants to access to the ecommerce$")
     public void theClientIsRegisteredAtThePlatform() throws InterruptedException {
-        homeImplementation.goToHomePage();
+        homeImplementation.loadHomePage();
         Thread.sleep(1000);
     }
 
@@ -38,7 +39,7 @@ public class LoginSteps {
 
     @Then("^the ecommerce should be show a error feedback$")
     public void theAppShowAErrorMsg() {
-        Assert.assertTrue(signInImplementation.getErrorMsg().contains("Authentication failed"));
+        Assert.assertTrue(signInImplementation.getErrorMsg().contains("Your email or password is incorrect!"));
     }
 
 }

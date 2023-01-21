@@ -24,3 +24,7 @@ hs_err_pid*
 
 #mvn
 target/
+
+#editor
+.idea/
+.DS_Store

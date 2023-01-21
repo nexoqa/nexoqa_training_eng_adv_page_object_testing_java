@@ -1,41 +1,38 @@
 package steps;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageobject.home.HomeImplementation;
 import pageobject.register.RegisterImplementation;
-import pageobject.signIn.SignInImplementation;
+import pageobject.signIn.SignInSignUpImplementation;
+import utils.WrapWebDriver;
 
 public class RegisterSteps {
 
     private WebDriver driver;
     private HomeImplementation homeImplementation;
-    private SignInImplementation signInImplementation;
+    private SignInSignUpImplementation signInImplementation;
     private RegisterImplementation registerImplementation;
 
     public RegisterSteps() {
-        System.setProperty("webdriver.chrome.driver", "C:\\dev\\personal\\nexoqa\\curso\\automation-practice-1\\driver\\chromedriver.exe");
-        driver = new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", "driver/chromedriver");
+        driver = WrapWebDriver.getInstance();
         homeImplementation = new HomeImplementation(driver);
-        signInImplementation = new SignInImplementation(driver);
+        signInImplementation = new SignInSignUpImplementation(driver);
         registerImplementation = new RegisterImplementation(driver);
     }
 
     @Given("^the user wants to register in the ecommerce$")
     public void theUserWantsRegisterInEcommerce() {
         homeImplementation.goToHomePage();
-        homeImplementation.goToSignInForm();
+        homeImplementation.goToSignUpForm();
     }
 
     @When("^the user fill the register form$")
     public void theUserFillTheRegisterForm() throws InterruptedException {
         Thread.sleep(2000);
-        signInImplementation.goToRegisterForm("nexoqa@gmail.com");
+        signInImplementation.goToRegisterForm("name", "nexoqa@gmail.com");
         Thread.sleep(2000);
         registerImplementation.fillRegisterForm(0);
     }
