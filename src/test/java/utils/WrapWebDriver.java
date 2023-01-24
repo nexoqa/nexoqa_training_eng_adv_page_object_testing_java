@@ -1,9 +1,11 @@
 package utils;
 
 import static org.openqa.selenium.remote.Browser.CHROME;
+import static org.openqa.selenium.remote.Browser.FIREFOX;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -15,14 +17,29 @@ public class WrapWebDriver {
     private WebDriver driver;
 
 
-    private WrapWebDriver(Boolean remote){
+    private WrapWebDriver(String browser, Boolean remote){
         try {
-            if (remote){
-                final DesiredCapabilities caps = new DesiredCapabilities ();
-                caps.setBrowserName (CHROME.browserName ());
-                driver = new RemoteWebDriver (new URL ("http://localhost:4444/wd/hub"), caps);
-            }else{
-                driver = new ChromeDriver();
+            switch (browser) {
+                case "chrome":
+                    if (remote) {
+                        final DesiredCapabilities caps = new DesiredCapabilities();
+                        caps.setBrowserName(CHROME.browserName());
+                        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), caps);
+                    } else {
+                        driver = new ChromeDriver();
+                    }
+                    break;
+                case "firefox":
+                    if (remote) {
+                        final DesiredCapabilities caps = new DesiredCapabilities();
+                        caps.setBrowserName(FIREFOX.browserName());
+                        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), caps);
+                    } else {
+                        driver = new FirefoxDriver();
+                    }
+                    break;
+                default:
+                    break;
             }
 
         } catch (Exception e) {
@@ -30,9 +47,9 @@ public class WrapWebDriver {
         }
     }
 
-    public static WebDriver getInstance(Boolean remote) {
+    public static WebDriver getInstance(String browser, Boolean remote) {
         if (instance == null){
-            instance = new WrapWebDriver(remote);
+            instance = new WrapWebDriver(browser, remote);
         }
         return instance.driver;
     }

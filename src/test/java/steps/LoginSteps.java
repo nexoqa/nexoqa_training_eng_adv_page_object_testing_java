@@ -18,7 +18,7 @@ public class LoginSteps {
 
     public LoginSteps() {
         System.setProperty("webdriver.chrome.driver", "driver/chromedriver");
-        driver = WrapWebDriver.getInstance(true);
+        driver = WrapWebDriver.getInstance("firefox",true);
         homeImplementation = new HomeImplementation(driver);
         signInImplementation = new SignInSignUpImplementation(driver);
     }
