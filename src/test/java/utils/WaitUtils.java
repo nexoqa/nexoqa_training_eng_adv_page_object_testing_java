@@ -1,5 +1,7 @@
 package utils;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,11 +16,11 @@ public class WaitUtils {
     }
 
     public void waitUntilClickable(Integer seconds, WebElement webElement) {
-        new WebDriverWait(driver, seconds).until(ExpectedConditions.elementToBeClickable(webElement));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     public void waitUntilVisible(Integer seconds, WebElement webElement) {
-        new WebDriverWait(driver, seconds).until(ExpectedConditions.visibilityOf(webElement));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(webElement));
     }
 
 }

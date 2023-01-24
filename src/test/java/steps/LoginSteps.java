@@ -5,7 +5,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageobject.home.HomeImplementation;
 import pageobject.signIn.SignInSignUpImplementation;
 import utils.WrapWebDriver;
@@ -19,7 +18,7 @@ public class LoginSteps {
 
     public LoginSteps() {
         System.setProperty("webdriver.chrome.driver", "driver/chromedriver");
-        driver = WrapWebDriver.getInstance();
+        driver = WrapWebDriver.getInstance(true);
         homeImplementation = new HomeImplementation(driver);
         signInImplementation = new SignInSignUpImplementation(driver);
     }

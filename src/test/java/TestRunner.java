@@ -1,4 +1,3 @@
-import cucumber.api.java.After;
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
@@ -15,7 +14,7 @@ public class TestRunner {
     @AfterClass
     public static void afterAll(){
         System.out.println("This will run after all");
-        WrapWebDriver.getInstance().close();
+        WrapWebDriver.getInstance(true).quit();
     }
 }
 

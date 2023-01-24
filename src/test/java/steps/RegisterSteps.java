@@ -17,7 +17,7 @@ public class RegisterSteps {
 
     public RegisterSteps() {
         System.setProperty("webdriver.chrome.driver", "driver/chromedriver");
-        driver = WrapWebDriver.getInstance();
+        driver = WrapWebDriver.getInstance(true);
         homeImplementation = new HomeImplementation(driver);
         signInImplementation = new SignInSignUpImplementation(driver);
         registerImplementation = new RegisterImplementation(driver);
